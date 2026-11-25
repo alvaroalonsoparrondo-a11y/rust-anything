@@ -281,7 +281,8 @@ fn render(out: &mut String, r: &Report, title: &str) -> std::fmt::Result {
     Ok(())
 }
 
-fn count(n: usize, word: &str) -> String {
+/// `n` and `word`, with an `s` unless `n` is one.
+pub(crate) fn count(n: usize, word: &str) -> String {
     if n == 1 {
         format!("1 {word}")
     } else {

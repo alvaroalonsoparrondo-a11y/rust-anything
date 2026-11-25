@@ -121,9 +121,9 @@ pub fn pick(report: &Report, function: Option<&str>) -> Result<Pick> {
                 );
             }
             format!(
-                "no hot function to port: none of the {} hot functions is exported by a portable \
+                "no hot function to port: none of the {} is exported by a portable \
                  unit, can cross the bridge and takes arguments. `rust-anything profile` shows why.",
-                report.hot.len()
+                crate::report::count(report.hot.len(), "hot function")
             )
         })?,
     };

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- `gate`'s size check and `go`'s "no hot function to port" message say `1 line` and
+  `1 hot function` for one, like `analyze`'s plan (#503).
 - Generated Go, Java, Kotlin and Ruby bridges pass a zero-argument fallible port function straight
   to `run`/`guard` (`run(port::pong)`) instead of wrapping it in a closure, so freshly bridged code
   passes `gate`'s clippy `redundant_closure` check again (#310, #487 by @Lewandox).

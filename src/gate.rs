@@ -187,7 +187,9 @@ fn size_check(crate_dir: &Path, manifest: &Manifest) -> Option<Check> {
         name: "size",
         passed,
         detail: format!(
-            "{rust} lines of Rust for {source} lines of {} ({growth:.1}x){}",
+            "{} of Rust for {} of {} ({growth:.1}x){}",
+            crate::report::count(rust, "line"),
+            crate::report::count(source, "line"),
             manifest.language.name(),
             if passed {
                 String::new()
@@ -647,6 +649,48 @@ mod tests {
         assert_eq!(explained, 1);
         assert_eq!(unexplained.len(), 1);
         assert!(unexplained[0].ends_with("a.rs:4"));
+    }
+
+    #[test]
+    fn size_detail_says_line_for_one() {
+        let root = crate::app::temp_dir("gate-size").unwrap();
+        std::fs::write(
+            root.join("add.ts"),
+            "export function add(a: number, b: number): number { return a + b; }\n",
+        )
+        .unwrap();
+        let crate_dir = root.join("add-rs");
+        std::fs::create_dir_all(crate_dir.join("src")).unwrap();
+        std::fs::write(
+            crate_dir.join("src/port.rs"),
+            "pub fn add(a: f64, b: f64) -> f64 {\n    a + b\n}\n",
+        )
+        .unwrap();
+        let manifest = crate::bridge::Manifest {
+            schema: String::new(),
+            root: root.clone(),
+            root_written: None,
+            unit: "add.ts".into(),
+            language: crate::lang::Lang::Ts,
+            kind: crate::bridge::Kind::Napi,
+            crate_name: "add-rs".into(),
+            exports: vec![],
+            classes: vec![],
+            js_only: vec![],
+            batches: vec![],
+            allocator: Default::default(),
+            float_tolerance: None,
+            ignore_key_order: false,
+        };
+        let check = super::size_check(&crate_dir, &manifest).unwrap();
+        std::fs::remove_dir_all(&root).unwrap();
+        assert!(
+            check
+                .detail
+                .starts_with("3 lines of Rust for 1 line of TypeScript/JavaScript ("),
+            "{}",
+            check.detail
+        );
     }
 
     #[test]
