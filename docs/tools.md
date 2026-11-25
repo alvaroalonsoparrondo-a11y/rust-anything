@@ -39,7 +39,7 @@ Scaffold a Rust crate for one unit: napi-rs or wasm-bindgen bindings in src/lib.
 
 Tool `refresh` · CLI `rust-anything refresh`
 
-Regenerate a crate's bindings (lib.rs, index.cjs, js.rs) from the signatures in src/port.rs, after changing them, adding any new batch classes. Never touches port.rs.
+Regenerate a crate's bindings and its language wrapper (the JS loader, the Python package or the generated wrapper file) from the signatures in src/port.rs, after changing them, adding any new batch classes. Never touches port.rs.
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |

@@ -102,7 +102,7 @@ enum Cmd {
         #[arg(long, value_enum, default_value = "mimalloc")]
         allocator: bridge::Allocator,
     },
-    /// 2b. Regenerate the bindings (`lib.rs`, `index.cjs`, `js.rs`) from the signatures in `port.rs`.
+    /// 2b. Regenerate the bindings and the language wrapper from the signatures in `port.rs`.
     Refresh {
         /// Crate folder made by `bridge`.
         #[arg(default_value = ".", value_parser = absolute)]
