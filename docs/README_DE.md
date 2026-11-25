@@ -245,6 +245,8 @@ häufigsten Quelldateien); ein Gradle-Modul mit `.kt`-Quellen und keinen `.java`
 gemischte Module bleiben Java. `--lang` überschreibt dies. Typen stammen aus dem Quellcode: TS-Typen,
 Python-Type-Hints, C-, Go-, Java-, Kotlin- und C#-Signaturen, Ruby-YARD-Tags, PHP-Typen und phpdoc;
 untypisierte Parameter, die als Zahlen verwendet werden, werden als Zahlen abgeleitet.
+[Typen](types.md) listet auf, was aus jedem davon in der Portierung wird und welche eine Funktion in ihrer
+Sprache belassen.
 
 Für PHP plant `analyze` eine PHP-App (Composer-Pakete und PSR-4-Autoloading, Risiken
 wie lose Vergleiche und Integer-Überläufe in Floats, Zuordnung von Composer-Paketen zu Crates), und ein
@@ -270,7 +272,9 @@ Aufzeichnen und Vergleichen): rufe die generierten `<namespace>.Rust`-Klassen au
 ## Mehr erfahren
 
 - [So funktioniert es](how-it-works.md): der Ablauf, was `bridge` und `analyze` entscheiden, Hot Paths, was es nicht abfangen kann, was eine echte Portierung erfordert und wie man mit dem Original Schritt hält (`map`)
+- [Eine Portierung als Paket ausliefern](packaging.md): maturin-Wheels und napi-rs-npm-Pakete pro Plattform, mit der CI, die sie baut
 - [Eine ganze App portieren](whole-apps.md): Server, CLIs und Bibliotheken, von der Front Door bis `app lift`
+- [Typen](types.md): was aus den Typen jeder Sprache in `port.rs` wird und warum ein Typ abgelehnt wird
 - [Beispiele und Fallstudien](examples.md): x18n und echter Code in sechs Sprachen
 - [Echte Portierungen](real-world.md): json-server, Fuse.js, vercel/ms, mit Benchmarks
 - [Installieren, aktualisieren und entwickeln](install.md): jede Installationsmethode, Windows und das Bauen aus dem Quellcode

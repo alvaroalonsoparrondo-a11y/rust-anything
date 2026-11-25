@@ -199,7 +199,7 @@ rust-anything 并不负责自动翻译代码：具体 Rust 代码由你的编程
 
 除 C、PHP、C# 和 PowerShell 外，每种语言都支持生成批处理类（`--batch`）：数据只需跨边界传入一次并常驻 Rust 侧，每次调用即可在全部 CPU 核心上并行处理所有条目。
 
-语言会根据代码库自动检测（依次检查 `go.mod`、`pom.xml`、`build.gradle`/`build.gradle.kts`、`.csproj` 或 `.sln`、`pyproject.toml`、`Gemfile`、`composer.json`、`package.json`，否则统计最常见的源码文件）；只有 `.kt` 源码而没有 `.java` 源码的 Gradle 模块视为 Kotlin，混合模块仍视为 Java；也可以通过 `--lang` 手动指定。类型信息直接从源码提取：TS 类型、Python 类型注解、C/Go/Java/Kotlin/C# 函数签名、Ruby YARD 标签、PHP 类型与 phpdoc；对于未标注类型但按数值使用的参数，会自动推断为数值类型。
+语言会根据代码库自动检测（依次检查 `go.mod`、`pom.xml`、`build.gradle`/`build.gradle.kts`、`.csproj` 或 `.sln`、`pyproject.toml`、`Gemfile`、`composer.json`、`package.json`，否则统计最常见的源码文件）；只有 `.kt` 源码而没有 `.java` 源码的 Gradle 模块视为 Kotlin，混合模块仍视为 Java；也可以通过 `--lang` 手动指定。类型信息直接从源码提取：TS 类型、Python 类型注解、C/Go/Java/Kotlin/C# 函数签名、Ruby YARD 标签、PHP 类型与 phpdoc；对于未标注类型但按数值使用的参数，会自动推断为数值类型。[类型](types.md) 列出了每种类型在移植中会变成什么，以及哪些类型会让函数保留在原语言中。
 
 对于 PHP，`analyze` 可为 PHP 应用生成迁移规划（支持 Composer 包与 PSR-4 自动加载、识别松散比较和整数溢出转浮点等风险、将 Composer 包映射为 Rust crate），并且支持对 PHP CLI 或服务端进行录制、回放与 Rust 前门接管。单元的顶层函数（参数可为标量、字符串、列表与关联数组）通过 PHP 的 FFI 扩展桥接（需要启用 `ext-ffi` 的 `php`，CLI 默认开启）：`diff` 通过后，改为引入生成的 `php/<crate>.php` 替代原文件。每次调用以 JSON 跨越边界，约 1 µs，因此 `bench` 会显示小型函数比 PHP 慢；PHP 目前还没有 `shadow`（[issue #200](https://github.com/erkamyaman/rust-anything/issues/200)）。
 
@@ -208,7 +208,9 @@ C# 的支持方式相同：`analyze` 会读取 `.csproj` 工程及其 NuGet 包�
 ## 了解更多
 
 - [工作原理](how-it-works.md)：核心闭环、`bridge` 和 `analyze` 如何做决定、热点路径、它捕获不到什么、一次真实迁移需要做哪些工作，以及如何跟进原项目的更新（`map`）
+- [以包的形式发布移植](packaging.md)：maturin wheel 和 napi-rs 按平台拆分的 npm 包，以及构建它们的 CI
 - [迁移整个应用](whole-apps.md)：服务端、CLI 和程序库，从前门到 `app lift`
+- [类型](types.md)：每种语言的类型在 `port.rs` 中会变成什么，以及某个类型为何被拒绝
 - [示例与案例研究](examples.md)：x18n，以及六种语言的真实代码
 - [真实项目迁移](real-world.md)：json-server、Fuse.js、vercel/ms，附基准测试
 - [安装、更新与开发](install.md)：所有安装方式、Windows，以及从源码构建

@@ -1196,22 +1196,11 @@ pub fn bridge(opts: &Options) -> Result<Outcome> {
     if let Some(k @ (Kind::Napi | Kind::Wasm)) = opts.kind
         && lang != crate::lang::Lang::Ts
     {
-        use crate::lang::Lang;
-        let native = match lang {
-            Lang::Python => "PyO3",
-            Lang::C => "a C ABI",
-            Lang::Go => "cgo",
-            Lang::Ruby => "Fiddle",
-            Lang::Java | Lang::Kotlin => "JNI",
-            Lang::Php => "PHP's FFI extension",
-            Lang::Csharp => "P/Invoke",
-            Lang::Powershell => "a generated PowerShell wrapper",
-            Lang::Ts => unreachable!(),
-        };
         bail!(
-            "--kind {} is for TS/JS units; {wanted} is {} and is bridged with {native}",
+            "--kind {} is for TS/JS units; {wanted} is {} and is bridged with {}",
             if k == Kind::Napi { "napi" } else { "wasm" },
-            lang.name()
+            lang.name(),
+            Bridge::for_lang(lang).label()
         );
     }
     let kind = opts.kind.unwrap_or(match unit.bridge {

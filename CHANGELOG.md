@@ -4,7 +4,11 @@
 
 - `bridge --kind napi` (or `wasm`) on a unit that is not TS/JS stops before writing anything, with
   `--kind napi is for TS/JS units; mathy.py is Python and is bridged with PyO3`, instead of writing a
-  napi crate for a Python unit that only fails at `diff`. The `--kind` help says it is for TS/JS units.
+  napi crate for a Python unit that only fails at `diff`. The `--kind` help says it is for TS/JS units
+  (#575, #598 by @alvaroalonsoparrondo-a11y).
+- `--float-tolerance -0.5` (with a space) on `record`, `diff` and `app record` gets the range message
+  instead of clap's `unexpected argument '-0' found`, and `diff` checks the tolerance before it
+  reads or runs anything (#574, #597 by @alvaroalonsoparrondo-a11y).
 
 ## 4.2.0 (2026-11-25)
 

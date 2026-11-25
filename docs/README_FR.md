@@ -245,6 +245,8 @@ courants) ; un module Gradle avec des sources `.kt` et sans source `.java` est d
 restent en Java. `--lang` permet de le forcer. Les types proviennent des sources : types TS, annotations
 Python, signatures C, Go, Java, Kotlin et C#, balises Ruby YARD, types PHP et phpdoc ; les paramètres non
 typés utilisés comme des nombres sont inférés comme nombres.
+[Types](types.md) indique ce que chacun devient dans le portage, et lesquels gardent une fonction dans son
+langage.
 
 Pour PHP, `analyze` planifie une application PHP (paquets Composer et chargement automatique
 PSR-4, risques tels que la comparaison souple et le débordement d'entiers en flottants, paquets Composer
@@ -270,7 +272,9 @@ petites méthodes plus lentes que .NET ; il n'y a pas encore de `shadow` pour C#
 ## En savoir plus
 
 - [Fonctionnement](how-it-works.md) : la boucle, ce que décident `bridge` et `analyze`, les chemins chauds, ce qui lui échappe, ce qu'exige un vrai portage, et le suivi de l'original (`map`)
+- [Publier un portage sous forme de paquet](packaging.md) : les wheels maturin et les paquets npm par plateforme de napi-rs, avec la CI qui les construit
 - [Porter toute une application](whole-apps.md) : serveurs, CLI et bibliothèques, de la porte d'entrée à `app lift`
+- [Types](types.md) : ce que deviennent les types de chaque langage dans `port.rs`, et pourquoi un type est refusé
 - [Exemples et études de cas](examples.md) : x18n, et du code réel dans six langages
 - [Portages réels](real-world.md) : json-server, Fuse.js, vercel/ms, avec benchmarks
 - [Installer, mettre à jour et développer](install.md) : toutes les méthodes d'installation, Windows, et la compilation depuis les sources
