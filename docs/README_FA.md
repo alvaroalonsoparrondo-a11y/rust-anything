@@ -45,7 +45,7 @@
   <sub>Prettier در برابر نسخهٔ Rust آن روی 59 فایل واقعی از ms، Fuse.js و json-server (Apple M4). خروجی یکسان، بایت‌به‌بایت. <a href="real-world.md#prettier">چگونه اندازه‌گیری شد</a>.</sub>
 </p>
 
-<p align="center"><sub>PHP، C# و PowerShell: ضبط، بازپخش و front door، به‌علاوهٔ انتقال واحدها از راه FFI و P/Invoke.</sub></p>
+<p align="center"><sub>PHP، C# و PowerShell: انتقال واحدها از راه FFI و P/Invoke.</sub></p>
 
 <table>
   <tr>

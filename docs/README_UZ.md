@@ -41,7 +41,7 @@ Turkiyada 🇹🇷 <a href="https://github.com/erkamyaman">erKam Yaman</a> tomon
   <sub>ms, Fuse.js va json-server'dan olingan 59 ta haqiqiy faylda Prettier uning Rust portiga qarshi (Apple M4). Baytma-bayt bir xil natija. <a href="real-world.md#prettier">Qanday o'lchangan</a>.</sub>
 </p>
 
-<p align="center"><sub>PHP, C# va PowerShell: yozib olish, qayta ijro va front door, shuningdek FFI va P/Invoke orqali modul portlari.</sub></p>
+<p align="center"><sub>PHP, C# va PowerShell: FFI va P/Invoke orqali modul portlari.</sub></p>
 
 <table>
   <tr>

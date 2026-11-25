@@ -41,7 +41,7 @@
   <sub>ms، Fuse.js ۋە json-server دىن ئېلىنغان 59 ھەقىقىي ھۆججەتتە Prettier بىلەن ئۇنىڭ Rust كۆچۈرمىسى (Apple M4). چىقىرىلمىسى بايتمۇبايت ئوخشاش. <a href="real-world.md#prettier">قانداق ئۆلچەنگەن</a>.</sub>
 </p>
 
-<p align="center"><sub>PHP، C# ۋە PowerShell: خاتىرىلەش، قايتا قويۇش ۋە front door، شۇنداقلا FFI ۋە P/Invoke ئارقىلىق بۆلەك كۆچۈرۈش.</sub></p>
+<p align="center"><sub>PHP، C# ۋە PowerShell: FFI ۋە P/Invoke ئارقىلىق بۆلەك كۆچۈرۈش.</sub></p>
 
 <table>
   <tr>
