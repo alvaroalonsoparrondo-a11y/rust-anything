@@ -1193,6 +1193,16 @@ pub fn bridge(opts: &Options) -> Result<Outcome> {
             unit.notes.first().map_or("", String::as_str)
         );
     }
+    if let Some(k @ (Kind::Napi | Kind::Wasm)) = opts.kind
+        && lang != crate::lang::Lang::Ts
+    {
+        bail!(
+            "--kind {} is for TS/JS units; {wanted} is {} and is bridged with {}",
+            if k == Kind::Napi { "napi" } else { "wasm" },
+            lang.name(),
+            Bridge::for_lang(lang).label()
+        );
+    }
     let kind = opts.kind.unwrap_or(match unit.bridge {
         Bridge::WasmBindgen => Kind::Wasm,
         Bridge::Pyo3 => Kind::Pyo3,

@@ -430,7 +430,7 @@ fn tool_schemas() -> Value {
             "inputSchema": { "type": "object", "properties": {
                 "root": { "type": "string", "description": "Repository root." },
                 "unit": { "type": "string", "description": "Unit id from analyze." },
-                "kind": { "type": "string", "enum": ["napi", "wasm"], "description": "Defaults to the plan's bridge." },
+                "kind": { "type": "string", "enum": ["napi", "wasm"], "description": "TS/JS units only; defaults to the plan's bridge. Other languages have their own bridge." },
                 "out": { "type": "string", "description": "Crate folder; defaults to <root>/rust/<name>." },
                 "name": { "type": "string", "description": "Crate name; defaults to `<unit>-rs`." },
                 "force": { "type": "boolean", "description": "Bridge a unit the plan marks blocked or keep." },
@@ -442,7 +442,7 @@ fn tool_schemas() -> Value {
         },
         {
             "name": "refresh",
-            "description": "Regenerate a crate's bindings (lib.rs, index.cjs, js.rs) from the signatures in src/port.rs, after changing them, adding any new batch classes. Never touches port.rs.",
+            "description": "Regenerate a crate's bindings and its language wrapper (the JS loader, the Python package or the generated wrapper file) from the signatures in src/port.rs, after changing them, adding any new batch classes. Never touches port.rs.",
             "inputSchema": { "type": "object", "properties": {
                 "crate": crate_dir,
                 "batch": { "type": "array", "items": { "type": "string" }, "description": "Batch classes to add, `function:param`: the function runs over many `param` values kept in Rust, on all cores, in one call. A `<Function>Index` struct in port.rs replaces the default per-item loop." },
