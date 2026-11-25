@@ -179,6 +179,9 @@ pub fn host_key() -> Option<&'static str> {
 
 pub fn package(opts: &Options) -> Result<Outcome> {
     let crate_dir = std::path::absolute(opts.crate_dir)?;
+    if let Some(v) = &opts.version {
+        validate_version(v)?;
+    }
     if cli::is_front_door(&crate_dir) {
         return cli::package(&crate_dir, opts);
     }
@@ -193,10 +196,7 @@ pub fn package(opts: &Options) -> Result<Outcome> {
     };
     let mut notes = Vec::new();
     let version = match &opts.version {
-        Some(v) => {
-            validate_version(v)?;
-            v.clone()
-        }
+        Some(v) => v.clone(),
         None => original_version(&manifest).unwrap_or_else(|| {
             let v = cargo_version(&crate_dir).unwrap_or_else(|| "0.1.0".into());
             notes.push(format!(

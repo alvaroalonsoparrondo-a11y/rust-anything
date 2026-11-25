@@ -121,9 +121,9 @@ pub fn pick(report: &Report, function: Option<&str>) -> Result<Pick> {
                 );
             }
             format!(
-                "no hot function to port: none of the {} hot functions is exported by a portable \
+                "no hot function to port: none of the {} is exported by a portable \
                  unit, can cross the bridge and takes arguments. `rust-anything profile` shows why.",
-                report.hot.len()
+                crate::report::count(report.hot.len(), "hot function")
             )
         })?,
     };
@@ -787,6 +787,26 @@ mod tests {
         assert!(
             named.contains("cannot be bridged") && named.contains("takes or returns a function"),
             "{named}"
+        );
+    }
+
+    #[test]
+    fn none_eligible_message_uses_singular_and_plural_count() {
+        let r1 = report(vec![hot("main", 99.0, true, &[], None)]);
+        let err1 = pick(&r1, None).unwrap_err().to_string();
+        assert!(
+            err1.contains("none of the 1 hot function is exported"),
+            "{err1}"
+        );
+
+        let r2 = report(vec![
+            hot("main", 99.0, true, &[], None),
+            hot("cli", 80.0, true, &[], None),
+        ]);
+        let err2 = pick(&r2, None).unwrap_err().to_string();
+        assert!(
+            err2.contains("none of the 2 hot functions is exported"),
+            "{err2}"
         );
     }
 

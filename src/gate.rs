@@ -187,7 +187,9 @@ fn size_check(crate_dir: &Path, manifest: &Manifest) -> Option<Check> {
         name: "size",
         passed,
         detail: format!(
-            "{rust} lines of Rust for {source} lines of {} ({growth:.1}x){}",
+            "{} of Rust for {} of {} ({growth:.1}x){}",
+            crate::report::count(rust, "line"),
+            crate::report::count(source, "line"),
             manifest.language.name(),
             if passed {
                 String::new()
@@ -657,5 +659,32 @@ mod tests {
         assert!(!check.passed);
         assert!(check.detail.contains("cannot read"));
         assert!(check.detail.contains("port.rs"));
+    }
+
+    #[test]
+    fn size_check_says_1_line_for_singular_source() {
+        let dir = crate::app::temp_dir("gate-size").unwrap();
+        let src_dir = dir.join("src");
+        std::fs::create_dir_all(&src_dir).unwrap();
+        std::fs::write(src_dir.join("add.ts"), "export const add = 1;\n").unwrap();
+        std::fs::write(src_dir.join("port.rs"), "pub fn add() -> i32 { 1 }\n").unwrap();
+        let manifest: crate::bridge::Manifest = serde_json::from_value(serde_json::json!({
+            "schema": crate::bridge::SCHEMA,
+            "root": dir,
+            "unit": "src",
+            "crate_name": "demo",
+            "kind": "napi",
+            "exports": [],
+        }))
+        .unwrap();
+        let check = super::size_check(&dir, &manifest).unwrap();
+        std::fs::remove_dir_all(dir).unwrap();
+        assert!(
+            check
+                .detail
+                .contains("1 line of Rust for 1 line of TypeScript/JavaScript"),
+            "{}",
+            check.detail
+        );
     }
 }
