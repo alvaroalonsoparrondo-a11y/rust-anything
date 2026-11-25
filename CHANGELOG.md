@@ -4,7 +4,7 @@
 
 - `--float-tolerance -0.5` (with a space) on `record`, `diff` and `app record` gets the range message
   instead of clap's `unexpected argument '-0' found`, and `diff` checks the tolerance before it
-  reads or runs anything.
+  reads or runs anything (#574, #597 by @alvaroalonsoparrondo-a11y).
 
 ## 4.2.0 (2026-11-25)
 
