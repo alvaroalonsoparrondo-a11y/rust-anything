@@ -965,6 +965,12 @@ pub fn per_function_counts(crate_dir: &Path, outcome: &DiffOutcome) -> Result<Fu
 /// that `diff_full` verified, failing if `cases.jsonl` was modified concurrently.
 pub fn diff_full_with_counts(opts: &DiffOptions) -> Result<(DiffOutcome, FunctionCounts)> {
     let cases_path = opts.crate_dir.join(CASES);
+    if !cases_path.exists() {
+        bail!(
+            "no {CASES} in {} (run `rust-anything record` first)",
+            opts.crate_dir.display()
+        );
+    }
     let snapshot = std::fs::read_to_string(&cases_path)
         .with_context(|| format!("reading {}", cases_path.display()))?;
     let outcome = diff_full(opts)?;

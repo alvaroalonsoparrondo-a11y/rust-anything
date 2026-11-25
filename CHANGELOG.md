@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- `enable --partial` and `enable --only` (without `--force`) on a crate with no `cases.jsonl` say
+  ``no cases.jsonl in <crate> (run `rust-anything record` first)`` like plain `enable`, instead of
+  the bare `No such file or directory (os error 2)` (#540 by @alvaroalonsoparrondo-a11y).
 - MCP `bridge` refuses a `kind` other than `"napi"` or `"wasm"`, `record`, `build` and `diff` refuse a
   non-string `profile`, and `fuzz` refuses a non-string `keep`, instead of silently falling back to
   the default (#530 by @Lewandox).
