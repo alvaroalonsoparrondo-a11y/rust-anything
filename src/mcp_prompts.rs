@@ -71,9 +71,41 @@ pub fn get(name: &str, arguments: &Value) -> Result<Value, String> {
 }
 
 fn body(markdown: &str) -> &str {
-    markdown
-        .strip_prefix("---\n")
-        .and_then(|rest| rest.split_once("\n---\n"))
-        .map_or(markdown, |(_, body)| body)
-        .trim()
+    let rest = markdown
+        .strip_prefix("---\r\n")
+        .or_else(|| markdown.strip_prefix("---\n"));
+    let stripped = rest.and_then(|r| {
+        r.split_once("\r\n---\r\n")
+            .or_else(|| r.split_once("\n---\n"))
+            .or_else(|| r.split_once("\r\n---\n"))
+            .or_else(|| r.split_once("\n---\r\n"))
+    });
+    stripped.map_or(markdown, |(_, body)| body).trim()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn strips_lf_front_matter() {
+        assert_eq!(body("---\nname: x\n---\n\n# Title\n"), "# Title");
+    }
+
+    #[test]
+    fn strips_crlf_front_matter() {
+        assert_eq!(body("---\r\nname: x\r\n---\r\n\r\n# Title\r\n"), "# Title");
+    }
+
+    #[test]
+    fn leaves_text_without_front_matter_unchanged() {
+        assert_eq!(body("# Title\n"), "# Title");
+        assert_eq!(body("plain markdown"), "plain markdown");
+    }
+
+    #[test]
+    fn leaves_opening_delimiter_without_closing_delimiter_unchanged() {
+        assert_eq!(body("---\nname: x\n"), "---\nname: x");
+        assert_eq!(body("---\r\nname: x\r\n"), "---\r\nname: x");
+    }
 }
