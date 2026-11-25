@@ -3,9 +3,10 @@
 ## Unreleased
 
 - `record --count 0` (and MCP `record` with `count: 0`) without `--inputs` or `--from-tests` stops
-  with an error before touching `cases.jsonl`, like `fuzz --cases 0`: it used to replace the
-  recording with an empty file and exit 0. `--count 0 --inputs <file>` still records just the
-  given cases (#539 by @alvaroalonsoparrondo-a11y).
+  with an error before touching `cases.jsonl` or the manifest, like `fuzz --cases 0`: it used to
+  replace the recording with an empty file and exit 0. `--count 0 --inputs <file>` still records
+  just the given cases (#539, #546 by @alvaroalonsoparrondo-a11y, with the early check and a test
+  from #556 by @ardazeybek).
 - `enable --partial` and `enable --only` (without `--force`) on a crate with no `cases.jsonl` say
   ``no cases.jsonl in <crate> (run `rust-anything record` first)`` like plain `enable`, instead of
   the bare `No such file or directory (os error 2)` (#540, #545 by @alvaroalonsoparrondo-a11y).
