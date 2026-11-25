@@ -443,3 +443,30 @@ fn record_prints_one_case_in_the_singular() {
         "{printed}"
     );
 }
+
+#[test]
+fn record_count_zero_without_inputs_is_refused_and_keeps_the_cases() {
+    // `--count 0` with nothing else to record used to replace cases.jsonl with an empty file and
+    // exit 0, losing the earlier recording.
+    let dir = std::env::temp_dir().join(format!("rust-anything-count-zero-{}", std::process::id()));
+    std::fs::create_dir_all(&dir).unwrap();
+    let cases = dir.join("cases.jsonl");
+    let recorded = "{\"fn\":\"add\",\"args\":[1,2],\"ok\":3}\n";
+    std::fs::write(&cases, recorded).unwrap();
+    let out = Command::new(env!("CARGO_BIN_EXE_rust-anything"))
+        .args([
+            "record".as_ref(),
+            dir.as_os_str(),
+            "--count".as_ref(),
+            "0".as_ref(),
+        ])
+        .output()
+        .unwrap();
+    let kept = std::fs::read_to_string(&cases).unwrap();
+    std::fs::remove_dir_all(&dir).unwrap();
+    let stderr = String::from_utf8_lossy(&out.stderr);
+    assert_eq!(out.status.code(), Some(2), "{stderr}");
+    assert!(stderr.contains("`--count 0` records nothing"), "{stderr}");
+    assert!(stderr.contains("--inputs or --from-tests"), "{stderr}");
+    assert_eq!(kept, recorded);
+}
