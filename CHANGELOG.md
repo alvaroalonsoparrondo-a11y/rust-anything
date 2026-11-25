@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- `--batch function:param` with an unknown function or parameter lists the ones `src/port.rs` has
+  (`(functions: add)`, `(parameters: a, b)`), and an empty side (`add:` or `:a`) gets the same
+  "write it as function:param" error as a spec without a colon (#504).
 - Generated Go, Java, Kotlin and Ruby bridges pass a zero-argument fallible port function straight
   to `run`/`guard` (`run(port::pong)`) instead of wrapping it in a closure, so freshly bridged code
   passes `gate`'s clippy `redundant_closure` check again (#310, #487 by @Lewandox).
