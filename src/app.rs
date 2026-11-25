@@ -2820,6 +2820,25 @@ mod tests {
     use super::*;
 
     #[test]
+    fn shell_quote_leaves_plain_words_and_quotes_the_rest() {
+        for plain in [
+            "cargo",
+            "./target/release/app",
+            "a=b",
+            "--flag",
+            "user@host:1,2+3%",
+        ] {
+            assert_eq!(shell_quote(plain), plain);
+        }
+        assert_eq!(shell_quote(""), "''");
+        assert_eq!(shell_quote("my app/bin"), "'my app/bin'");
+        assert_eq!(shell_quote("it's"), r"'it'\''s'");
+        assert_eq!(shell_quote("$HOME"), "'$HOME'");
+        assert_eq!(shell_quote("*.rs"), "'*.rs'");
+        assert_eq!(shell_quote("a;b"), "'a;b'");
+    }
+
+    #[test]
     fn given_names_keep_their_tail() {
         let a = given_slug("tests/format/typescript/conformance/types/never/never.ts");
         let b = given_slug("tests/format/typescript/conformance/types/tuple/tuple.ts");
