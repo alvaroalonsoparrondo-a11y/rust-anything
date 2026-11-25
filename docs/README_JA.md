@@ -41,7 +41,7 @@
   <sub>ms、Fuse.js、json-server の 59 個の実ファイルで Prettier と Rust 移植版を比較（Apple M4）。出力はバイト単位で同一です。<a href="real-world.md#prettier">計測方法</a>。</sub>
 </p>
 
-<p align="center"><sub>PHP と C#：FFI と P/Invoke 越しのユニット移植に対応しています。</sub></p>
+<p align="center"><sub>PHP、C#、PowerShell：FFI と P/Invoke 越しのユニット移植に対応しています。</sub></p>
 
 <table>
   <tr>

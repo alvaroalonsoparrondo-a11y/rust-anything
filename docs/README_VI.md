@@ -41,7 +41,7 @@ Làm tại Thổ Nhĩ Kỳ 🇹🇷 bởi <a href="https://github.com/erkamyaman
   <sub>Prettier so với bản port Rust trên 59 file thực tế lấy từ ms, Fuse.js và json-server (Apple M4). Đầu ra giống nhau đến từng byte. <a href="real-world.md#prettier">Cách đo</a>.</sub>
 </p>
 
-<p align="center"><sub>PHP và C#: port từng đơn vị qua FFI và P/Invoke.</sub></p>
+<p align="center"><sub>PHP, C# và PowerShell: port từng đơn vị qua FFI và P/Invoke.</sub></p>
 
 <table>
   <tr>

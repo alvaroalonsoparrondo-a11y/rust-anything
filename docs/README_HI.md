@@ -41,7 +41,7 @@
   <sub>ms, Fuse.js और json-server की 59 असली फ़ाइलों पर Prettier बनाम उसका Rust पोर्ट (Apple M4)। आउटपुट बाइट-दर-बाइट एक जैसा। <a href="real-world.md#prettier">नापा कैसे गया</a>।</sub>
 </p>
 
-<p align="center"><sub>PHP और C#: रिकॉर्ड, रीप्ले और front door, साथ में FFI और P/Invoke के ज़रिए यूनिट पोर्ट।</sub></p>
+<p align="center"><sub>PHP, C# और PowerShell: रिकॉर्ड, रीप्ले और front door, साथ में FFI और P/Invoke के ज़रिए यूनिट पोर्ट।</sub></p>
 
 <table>
   <tr>

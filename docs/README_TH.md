@@ -47,7 +47,7 @@ Made in Türkiye 🇹🇷 by <a href="https://github.com/erkamyaman">erKam Yaman
   <sub>Prettier เทียบกับพอร์ต Rust บนไฟล์จริง 59 ไฟล์จาก ms, Fuse.js และ json-server (Apple M4) ผลลัพธ์ตรงกันทุกไบต์ <a href="real-world.md#prettier">วิธีการวัดผล</a></sub>
 </p>
 
-<p align="center"><sub>PHP และ C#: พอร์ตระดับยูนิต ผ่าน FFI และ P/Invoke</sub></p>
+<p align="center"><sub>PHP, C# และ PowerShell: พอร์ตระดับยูนิต ผ่าน FFI และ P/Invoke</sub></p>
 
 <table>
   <tr>

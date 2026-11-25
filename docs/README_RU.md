@@ -41,7 +41,7 @@
   <sub>Prettier против своего порта на Rust на 59 реальных файлах из ms, Fuse.js и json-server (Apple M4). Одинаковый вывод, байт в байт. <a href="real-world.md#prettier">Как измеряли</a>.</sub>
 </p>
 
-<p align="center"><sub>PHP и C#: перенос отдельных модулей через FFI и P/Invoke.</sub></p>
+<p align="center"><sub>PHP, C# и PowerShell: перенос отдельных модулей через FFI и P/Invoke.</sub></p>
 
 <table>
   <tr>

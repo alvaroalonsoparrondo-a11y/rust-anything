@@ -47,7 +47,7 @@ Dibuat di Türkiye 🇹🇷 oleh <a href="https://github.com/erkamyaman">erKam Y
   <sub>Prettier melawan port Rust-nya pada 59 file nyata dari ms, Fuse.js, dan json-server (Apple M4). Output sama, byte demi byte. <a href="real-world.md#prettier">Cara pengukurannya</a>.</sub>
 </p>
 
-<p align="center"><sub>PHP dan C#: port per unit, melalui FFI dan P/Invoke.</sub></p>
+<p align="center"><sub>PHP, C#, dan PowerShell: port per unit, melalui FFI dan P/Invoke.</sub></p>
 
 <table>
   <tr>

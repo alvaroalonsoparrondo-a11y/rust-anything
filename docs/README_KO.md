@@ -41,7 +41,7 @@
   <sub>ms, Fuse.js, json-server의 실제 파일 59개에서 Prettier와 Rust 포팅 버전을 비교(Apple M4). 출력은 바이트 단위로 동일합니다. <a href="real-world.md#prettier">측정 방법</a>.</sub>
 </p>
 
-<p align="center"><sub>PHP와 C#: 기록, 재생, front door를 지원하며 FFI 및 P/Invoke를 통한 유닛 포팅도 가능합니다.</sub></p>
+<p align="center"><sub>PHP, C#, PowerShell: 기록, 재생, front door를 지원하며 FFI 및 P/Invoke를 통한 유닛 포팅도 가능합니다.</sub></p>
 
 <table>
   <tr>
