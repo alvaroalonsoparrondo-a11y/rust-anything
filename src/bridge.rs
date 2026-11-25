@@ -710,12 +710,35 @@ fn needs_js(api: &codegen::PortApi) -> bool {
     api.needs_json()
 }
 
+/// The name and the reason of a `--keep name` or `--keep "name: reason"` entry, trimmed.
+fn keep_entry(k: &str) -> (&str, &str) {
+    let (name, reason) = k.split_once(':').unwrap_or((k, ""));
+    (name.trim(), reason.trim())
+}
+
+/// Fails when a `--keep` entry names none of the unit's exports and classes (`names`), so a typo
+/// does not bridge the export it meant to keep.
+fn check_keep(keep: &[String], names: &[&str], unit: &str) -> Result<()> {
+    if let Some((name, _)) = keep
+        .iter()
+        .map(|k| keep_entry(k))
+        .find(|(name, _)| !names.contains(name))
+    {
+        let mut known = names.to_vec();
+        known.sort_unstable();
+        known.dedup();
+        bail!(
+            "--keep `{name}` is not an export of `{unit}` (exports: {})",
+            known.join(", ")
+        );
+    }
+    Ok(())
+}
+
 /// The reason given with `--keep name` or `--keep "name: reason"`, if `name` is kept.
 fn keep_reason(keep: &[String], name: &str) -> Option<String> {
     keep.iter().find_map(|k| {
-        let (kept, reason) = k
-            .split_once(':')
-            .map_or((k.as_str(), ""), |(n, r)| (n.trim(), r.trim()));
+        let (kept, reason) = keep_entry(k);
         (kept == name).then(|| {
             if reason.is_empty() {
                 "kept on request".to_string()
@@ -1232,6 +1255,11 @@ pub fn bridge(opts: &Options) -> Result<Outcome> {
         )
         .collect();
     defined.sort();
+    check_keep(
+        &opts.keep,
+        &defined.iter().map(|(name, _)| *name).collect::<Vec<_>>(),
+        &unit.id,
+    )?;
     if let Some(pair) = defined.windows(2).find(|w| w[0].0 == w[1].0) {
         bail!(
             "`{}` is defined twice in `{}` ({} and {}), and the bridge names every export by \
@@ -1784,6 +1812,42 @@ mod tests {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn keep_entries_are_trimmed() {
+        let keep = |k: &[&str]| k.iter().map(|s| s.to_string()).collect::<Vec<_>>();
+        assert_eq!(
+            keep_reason(&keep(&["add"]), "add").as_deref(),
+            Some("kept on request")
+        );
+        assert_eq!(
+            keep_reason(&keep(&[" add "]), "add").as_deref(),
+            Some("kept on request")
+        );
+        assert_eq!(
+            keep_reason(&keep(&[" add : slow in Rust "]), "add").as_deref(),
+            Some("slow in Rust")
+        );
+        assert_eq!(
+            keep_reason(&keep(&["add:"]), "add").as_deref(),
+            Some("kept on request")
+        );
+        assert_eq!(keep_reason(&keep(&["add"]), "sub"), None);
+    }
+
+    #[test]
+    fn unknown_keep_names_are_refused() {
+        let keep = |k: &str| vec![k.to_string()];
+        assert!(check_keep(&keep(" add : reason"), &["add", "Point"], "src/add.ts").is_ok());
+        assert!(check_keep(&keep("Point"), &["add", "Point"], "src/add.ts").is_ok());
+        let err = check_keep(&keep("nope"), &["sub", "add"], "src/add.ts")
+            .unwrap_err()
+            .to_string();
+        assert_eq!(
+            err,
+            "--keep `nope` is not an export of `src/add.ts` (exports: add, sub)"
+        );
+    }
 
     #[test]
     fn a_relative_root_is_resolved_from_the_crate_and_kept_relative() {

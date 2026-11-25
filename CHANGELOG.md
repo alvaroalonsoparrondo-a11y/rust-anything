@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- `bridge --keep` refuses a name that is not an export or class of the unit, listing the ones it
+  has, before writing anything: a typo used to bridge the export it meant to keep. A bare
+  `--keep ' add '` is trimmed like `--keep "add: reason"` already was (#499).
 - Generated Go, Java, Kotlin and Ruby bridges pass a zero-argument fallible port function straight
   to `run`/`guard` (`run(port::pong)`) instead of wrapping it in a closure, so freshly bridged code
   passes `gate`'s clippy `redundant_closure` check again (#310, #487 by @Lewandox).
