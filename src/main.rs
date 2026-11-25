@@ -167,7 +167,8 @@ enum Cmd {
         #[arg(long)]
         no_pin_clock: bool,
     },
-    /// 3b. Build the crate's JS module (napi-rs `.node`, wasm-bindgen output) or, with
+    /// 3b. Build the crate's native module for its language (napi-rs `.node` or wasm-bindgen output
+    /// for TS/JS, a PyO3 extension for Python, a shared library for the others) or, with
     /// `--profile android`, the JNI library for Android ABIs into `jniLibs/`.
     Build {
         /// Crate folder made by `bridge`.
