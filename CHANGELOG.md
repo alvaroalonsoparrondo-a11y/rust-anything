@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- `bridge` on a crate folder that already has a port names the next step: run
+  `rust-anything refresh <crate>` to regenerate the bindings, pass `--out` or `--name` for a new
+  crate, or remove the folder to start over.
+
 ## 4.2.0 (2026-11-25)
 
 - MCP boolean arguments (`force`, `dry_run`, `whole_app`, `ignore_key_order`, `pin_clock`, `partial`,

@@ -99,7 +99,16 @@ fn bridge_writes_a_crate_and_never_overwrites_it() {
         as_json: Vec::new(),
         allocator: Default::default(),
     });
-    assert!(again.unwrap_err().to_string().contains("never overwrites"));
+    let again = again.unwrap_err().to_string();
+    assert!(again.contains("never overwrites"), "{again}");
+    assert!(
+        again.contains(&format!(
+            "Run `rust-anything refresh {}` to regenerate the bindings, pass --out or --name for a \
+             new crate, or remove the folder to start over",
+            dir.display()
+        )),
+        "{again}"
+    );
     let blocked = bridge::bridge(&bridge::Options {
         root: &fixture(),
         unit: "packages/a/src/svelte.ts",

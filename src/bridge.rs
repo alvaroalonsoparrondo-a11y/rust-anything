@@ -1367,8 +1367,10 @@ pub fn bridge(opts: &Options) -> Result<Outcome> {
         .unwrap_or_else(|| root.join("rust").join(&crate_name));
     if crate_dir.exists() && std::fs::read_dir(&crate_dir)?.next().is_some() {
         bail!(
-            "{} already exists and is not empty; rust-anything never overwrites a port in progress",
-            crate_dir.display()
+            "{dir} already exists and is not empty; rust-anything never overwrites a port in \
+             progress. Run `rust-anything refresh {dir}` to regenerate the bindings, pass --out or \
+             --name for a new crate, or remove the folder to start over",
+            dir = crate_dir.display()
         );
     }
 
