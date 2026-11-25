@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- `--float-tolerance -0.5` (with a space) on `record`, `diff` and `app record` gets the range message
+  instead of clap's `unexpected argument '-0' found`, and `diff` checks the tolerance before it
+  reads or runs anything.
+
 ## 4.2.0 (2026-11-25)
 
 - MCP boolean arguments (`force`, `dry_run`, `whole_app`, `ignore_key_order`, `pin_clock`, `partial`,

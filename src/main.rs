@@ -135,7 +135,7 @@ enum Cmd {
         node_args: Vec<String>,
         /// Floats match when they differ by at most this times the larger magnitude (absolute
         /// below 1), e.g. 1e-9 for numeric code. Saved with the crate for diff and gate; 0 removes it.
-        #[arg(long)]
+        #[arg(long, allow_negative_numbers = true)]
         float_tolerance: Option<f64>,
         /// Compare objects regardless of key order, now and in every later `diff`, `gate`, `enable`
         /// and `report`. `--no-ignore-key-order` saves the opposite.
@@ -210,7 +210,7 @@ enum Cmd {
         #[arg(long)]
         ignore_key_order: bool,
         /// Floats match within this tolerance for this run (the one saved by `record` otherwise).
-        #[arg(long)]
+        #[arg(long, allow_negative_numbers = true)]
         float_tolerance: Option<f64>,
         /// Print the machine-readable report as JSON.
         #[arg(long)]
@@ -564,7 +564,7 @@ enum AppCmd {
         /// Numbers in the output match when they differ by at most this times the larger
         /// magnitude (absolute below 1), e.g. 1e-9 for numeric code. Saved with the cases; 0
         /// removes it.
-        #[arg(long)]
+        #[arg(long, allow_negative_numbers = true)]
         float_tolerance: Option<f64>,
         /// A written file of raw floats, compared value by value within --float-tolerance
         /// instead of byte for byte: `PATH=f32le` or `PATH=f64le`. Repeatable; saved with the
@@ -997,6 +997,11 @@ fn run() -> Result<ExitCode> {
             json,
             node_args,
         } => {
+            // A bad tolerance is refused before anything is read or run, as
+            // `record` and `app record` do.
+            if let Some(t) = float_tolerance {
+                rust_anything::tolerance::check(t)?;
+            }
             // The same missing-folder hint the other commands give before they
             // read the manifest. Otherwise a missing crate reaches the harness
             // and reports "run record first", which cannot work yet.
