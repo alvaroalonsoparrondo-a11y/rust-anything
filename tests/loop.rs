@@ -118,6 +118,43 @@ fn bridge_writes_a_crate_and_never_overwrites_it() {
 }
 
 #[test]
+fn bridge_refuses_a_js_kind_for_a_unit_in_another_language() {
+    let root = std::env::temp_dir().join(format!("rust-anything-kind-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&root);
+    std::fs::create_dir_all(&root).unwrap();
+    std::fs::write(
+        root.join("mathy.py"),
+        "def add(a: int, b: int) -> int:\n    return a + b\n",
+    )
+    .unwrap();
+    for (kind, name) in [(Kind::Napi, "napi"), (Kind::Wasm, "wasm")] {
+        let err = bridge::bridge(&bridge::Options {
+            root: &root,
+            unit: "mathy.py",
+            kind: Some(kind),
+            out: None,
+            name: None,
+            force: false,
+            keep: Vec::new(),
+            lang: None,
+            batch: Vec::new(),
+            as_json: Vec::new(),
+            allocator: Default::default(),
+        })
+        .unwrap_err()
+        .to_string();
+        assert_eq!(
+            err,
+            format!(
+                "--kind {name} is for TS/JS units; mathy.py is Python and is bridged with PyO3"
+            )
+        );
+        assert!(!root.join("rust").exists(), "nothing is written");
+    }
+    std::fs::remove_dir_all(&root).unwrap();
+}
+
+#[test]
 fn diff_rejects_an_empty_recording() {
     if !common::have("node") {
         return;

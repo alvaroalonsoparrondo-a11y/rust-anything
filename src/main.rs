@@ -74,7 +74,8 @@ enum Cmd {
         root: PathBuf,
         /// Unit id, as `analyze` lists it.
         unit: String,
-        /// Bridge to generate; defaults to the plan's choice.
+        /// TS/JS units: napi or wasm; defaults to the plan's choice. Other languages have
+        /// their own bridge.
         #[arg(long, value_enum)]
         kind: Option<KindArg>,
         /// Crate folder; defaults to `<root>/rust/<name>`.

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- `bridge --kind napi` (or `wasm`) on a unit that is not TS/JS stops before writing anything, with
+  `--kind napi is for TS/JS units; mathy.py is Python and is bridged with PyO3`, instead of writing a
+  napi crate for a Python unit that only fails at `diff`. The `--kind` help says it is for TS/JS units.
+
 ## 4.2.0 (2026-11-25)
 
 - MCP boolean arguments (`force`, `dry_run`, `whole_app`, `ignore_key_order`, `pin_clock`, `partial`,

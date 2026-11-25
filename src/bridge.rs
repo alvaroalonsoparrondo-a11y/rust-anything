@@ -1193,6 +1193,27 @@ pub fn bridge(opts: &Options) -> Result<Outcome> {
             unit.notes.first().map_or("", String::as_str)
         );
     }
+    if let Some(k @ (Kind::Napi | Kind::Wasm)) = opts.kind
+        && lang != crate::lang::Lang::Ts
+    {
+        use crate::lang::Lang;
+        let native = match lang {
+            Lang::Python => "PyO3",
+            Lang::C => "a C ABI",
+            Lang::Go => "cgo",
+            Lang::Ruby => "Fiddle",
+            Lang::Java | Lang::Kotlin => "JNI",
+            Lang::Php => "PHP's FFI extension",
+            Lang::Csharp => "P/Invoke",
+            Lang::Powershell => "a generated PowerShell wrapper",
+            Lang::Ts => unreachable!(),
+        };
+        bail!(
+            "--kind {} is for TS/JS units; {wanted} is {} and is bridged with {native}",
+            if k == Kind::Napi { "napi" } else { "wasm" },
+            lang.name()
+        );
+    }
     let kind = opts.kind.unwrap_or(match unit.bridge {
         Bridge::WasmBindgen => Kind::Wasm,
         Bridge::Pyo3 => Kind::Pyo3,

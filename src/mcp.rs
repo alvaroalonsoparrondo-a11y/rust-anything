@@ -430,7 +430,7 @@ fn tool_schemas() -> Value {
             "inputSchema": { "type": "object", "properties": {
                 "root": { "type": "string", "description": "Repository root." },
                 "unit": { "type": "string", "description": "Unit id from analyze." },
-                "kind": { "type": "string", "enum": ["napi", "wasm"], "description": "Defaults to the plan's bridge." },
+                "kind": { "type": "string", "enum": ["napi", "wasm"], "description": "TS/JS units only; defaults to the plan's bridge. Other languages have their own bridge." },
                 "out": { "type": "string", "description": "Crate folder; defaults to <root>/rust/<name>." },
                 "name": { "type": "string", "description": "Crate name; defaults to `<unit>-rs`." },
                 "force": { "type": "boolean", "description": "Bridge a unit the plan marks blocked or keep." },

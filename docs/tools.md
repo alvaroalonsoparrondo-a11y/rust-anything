@@ -26,7 +26,7 @@ Scaffold a Rust crate for one unit: napi-rs or wasm-bindgen bindings in src/lib.
 | --- | --- | --- | --- |
 | `root` | string | yes | Repository root. |
 | `unit` | string | yes | Unit id from analyze. |
-| `kind` | string |  | Defaults to the plan's bridge. |
+| `kind` | string |  | TS/JS units only; defaults to the plan's bridge. Other languages have their own bridge. |
 | `out` | string |  | Crate folder; defaults to <root>/rust/<name>. |
 | `name` | string |  | Crate name; defaults to `<unit>-rs`. |
 | `force` | boolean |  | Bridge a unit the plan marks blocked or keep. |
