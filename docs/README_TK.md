@@ -41,7 +41,7 @@ Türkiýede 🇹🇷 <a href="https://github.com/erkamyaman">erKam Yaman</a> tar
   <sub>ms, Fuse.js we json-server-den alnan 59 hakyky faýlda Prettier we onuň Rust porty (Apple M4). Baýtma-baýt birmeňzeş çykyş. <a href="real-world.md#prettier">Nähili ölçüldi</a>.</sub>
 </p>
 
-<p align="center"><sub>PHP we C#: şu gün ýazga almak, gaýtadan işletmek we front door; modul portlary indiki nobatda.</sub></p>
+<p align="center"><sub>PHP, C# we PowerShell: ýazga almak, gaýtadan işletmek we front door, şeýle hem FFI we P/Invoke arkaly modul portlary.</sub></p>
 
 <table>
   <tr>

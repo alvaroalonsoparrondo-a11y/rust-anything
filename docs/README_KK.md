@@ -41,7 +41,7 @@
   <sub>ms, Fuse.js және json-server жобаларынан алынған 59 нақты файлда Prettier мен оның Rust порты (Apple M4). Шығысы байтпа-байт бірдей. <a href="real-world.md#prettier">Қалай өлшенді</a>.</sub>
 </p>
 
-<p align="center"><sub>PHP және C#: бүгін жазу, қайта ойнату және front door; модуль порттары келесі кезекте.</sub></p>
+<p align="center"><sub>PHP, C# және PowerShell: жазу, қайта ойнату және front door, сондай-ақ FFI және P/Invoke арқылы модуль порттары.</sub></p>
 
 <table>
   <tr>

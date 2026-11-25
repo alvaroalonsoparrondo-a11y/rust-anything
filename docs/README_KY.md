@@ -41,7 +41,7 @@
   <sub>ms, Fuse.js жана json-server долбоорлорунан алынган 59 чыныгы файлда Prettier жана анын Rust порту (Apple M4). Чыгышы байтма-байт бирдей. <a href="real-world.md#prettier">Кантип өлчөнгөн</a>.</sub>
 </p>
 
-<p align="center"><sub>PHP жана C#: бүгүн жазуу, кайра ойнотуу жана front door; модуль порттору кийинки кезекте.</sub></p>
+<p align="center"><sub>PHP, C# жана PowerShell: жазуу, кайра ойнотуу жана front door, ошондой эле FFI жана P/Invoke аркылуу модуль порттору.</sub></p>
 
 <table>
   <tr>

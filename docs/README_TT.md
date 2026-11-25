@@ -41,7 +41,7 @@
   <sub>ms, Fuse.js һәм json-server проектларыннан алынган 59 чын файлда Prettier һәм аның Rust порты (Apple M4). Нәтиҗә байтка-байт бертөрле. <a href="real-world.md#prettier">Ничек үлчәнде</a>.</sub>
 </p>
 
-<p align="center"><sub>PHP һәм C#: бүген язып алу, кабат уйнату һәм front door; модуль портлары киләсе чиратта.</sub></p>
+<p align="center"><sub>PHP, C# һәм PowerShell: язып алу, кабат уйнату һәм front door, шулай ук FFI һәм P/Invoke аша модуль портлары.</sub></p>
 
 <table>
   <tr>
