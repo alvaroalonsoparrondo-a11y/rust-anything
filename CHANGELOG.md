@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- `package --version` (and MCP `package`'s `version`) is refused before anything is written,
+  `--dry-run` included, unless it is `MAJOR.MINOR.PATCH` with an optional `-prerelease`: an empty,
+  padded or malformed version used to land in the package and fail only at publish time (#502).
 - Generated Go, Java, Kotlin and Ruby bridges pass a zero-argument fallible port function straight
   to `run`/`guard` (`run(port::pong)`) instead of wrapping it in a closure, so freshly bridged code
   passes `gate`'s clippy `redundant_closure` check again (#310, #487 by @Lewandox).
