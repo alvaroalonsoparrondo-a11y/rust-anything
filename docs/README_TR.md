@@ -245,6 +245,8 @@ Dil, repodan tespit edilir (`go.mod`, `pom.xml`, `build.gradle`/`build.gradle.kt
 olarak kalır. `--lang` bunu geçersiz kılar. Tipler kaynaktan gelir: TS tipleri, Python type hint'leri, C, Go,
 Java, Kotlin ve C# imzaları, Ruby YARD etiketleri, PHP tipleri ve phpdoc; sayı olarak kullanılan tipsiz parametreler
 sayı olarak çıkarılır.
+[Tipler](types.md) her birinin portta neye dönüştüğünü ve hangilerinin bir fonksiyonu kendi dilinde tuttuğunu
+listeler.
 
 PHP için `analyze` bir PHP uygulamasını planlar (Composer paketleri ve PSR-4 autoloading,
 gevşek karşılaştırma ve tam sayı taşmasının float'a dönüşmesi gibi riskler, crate'lere eşlenmiş
@@ -270,7 +272,9 @@ bu nedenle `bench` küçük metotları .NET'ten daha yavaş gösterir; C# için 
 ## Daha fazlası
 
 - [Nasıl çalışır](how-it-works.md): döngü, `bridge` ve `analyze` neye karar verir, hot path'ler, neyi yakalayamaz, gerçek bir portun neler gerektirdiği ve orijinale ayak uydurmak (`map`)
+- [Bir portu paket olarak yayınlamak](packaging.md): maturin wheel'leri ve napi-rs'in platforma özel npm paketleri, bunları derleyen CI ile birlikte
 - [Tüm uygulamayı port etmek](whole-apps.md): sunucular, CLI'lar ve kütüphaneler, front door'dan `app lift`'e kadar
+- [Tipler](types.md): her dilin tiplerinin `port.rs` içinde neye dönüştüğü ve bir tipin neden reddedildiği
 - [Örnekler ve vaka çalışmaları](examples.md): x18n ve altı dilde gerçek kod
 - [Gerçek dünya portları](real-world.md): json-server, Fuse.js, vercel/ms, benchmark'larıyla
 - [Kurulum, güncelleme ve geliştirme](install.md): tüm kurulum yöntemleri, Windows ve kaynaktan derleme
