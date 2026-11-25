@@ -41,7 +41,7 @@
   <sub>ms، Fuse.js ۋە json-server دىن ئېلىنغان 59 ھەقىقىي ھۆججەتتە Prettier بىلەن ئۇنىڭ Rust كۆچۈرمىسى (Apple M4). چىقىرىلمىسى بايتمۇبايت ئوخشاش. <a href="real-world.md#prettier">قانداق ئۆلچەنگەن</a>.</sub>
 </p>
 
-<p align="center"><sub>PHP ۋە C#: ھازىر خاتىرىلەش، قايتا قويۇش ۋە front door؛ بۆلەك كۆچۈرۈش كېيىنكى قەدەمدە.</sub></p>
+<p align="center"><sub>PHP، C# ۋە PowerShell: FFI ۋە P/Invoke ئارقىلىق بۆلەك كۆچۈرۈش.</sub></p>
 
 <table>
   <tr>
@@ -258,9 +258,9 @@ rust-anything كودنى تەرجىمە قىلمايدۇ: Rust كودىنى سى
 C، PHP، C# ۋە PowerShell دىن باشقا ھەر بىر تىل batch كلاسلىرىغىمۇ (`--batch`) ئېرىشىدۇ: ئېلېمېنتلار بىر قېتىم ئۆتۈپ
 Rust تا قالىدۇ، ھەر بىر چاقىرىق ئۇلارنىڭ ھەممىسىنى بارلىق يادرولاردا بىر تەرەپ قىلىدۇ.
 
-تىل ئامباردىن (repository) بايقىلىدۇ (`go.mod`، `pom.xml`، `.csproj` ياكى `.sln`،
+تىل ئامباردىن (repository) بايقىلىدۇ (`go.mod`، `pom.xml`، `build.gradle`/`build.gradle.kts`، `.csproj` ياكى `.sln`،
 `pyproject.toml`، `Gemfile`، `composer.json`، `package.json`، بولمىسا ئەڭ كۆپ ئۇچرايدىغان مەنبە ھۆججەتلەر)؛
-`--lang` ئۇنى قاپلايدۇ. تىپلار مەنبە كودتىن ئېلىنىدۇ: TS تىپلىرى، Python type hints، C، Go، Java ۋە C#
+`.kt` مەنبە ھۆججەتلىرى بار، `.java` ھۆججىتى يوق Gradle مودۇلى Kotlin دەپ قارىلىدۇ، ئارىلاش مودۇللار Java پېتى قالىدۇ. `--lang` ئۇنى قاپلايدۇ. تىپلار مەنبە كودتىن ئېلىنىدۇ: TS تىپلىرى، Python type hints، C، Go، Java، Kotlin ۋە C#
 ئىمزالىرى، Ruby YARD بەلگىلىرى، PHP تىپلىرى ۋە phpdoc؛ سان سۈپىتىدە ئىشلىتىلگەن تىپسىز پارامېتىرلار
 سان دەپ پەرەز قىلىنىدۇ.
 

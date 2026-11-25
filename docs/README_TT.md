@@ -41,7 +41,7 @@
   <sub>ms, Fuse.js һәм json-server проектларыннан алынган 59 чын файлда Prettier һәм аның Rust порты (Apple M4). Нәтиҗә байтка-байт бертөрле. <a href="real-world.md#prettier">Ничек үлчәнде</a>.</sub>
 </p>
 
-<p align="center"><sub>PHP һәм C#: бүген язып алу, кабат уйнату һәм front door; модуль портлары киләсе чиратта.</sub></p>
+<p align="center"><sub>PHP, C# һәм PowerShell: FFI һәм P/Invoke аша модуль портлары.</sub></p>
 
 <table>
   <tr>
@@ -238,9 +238,9 @@ rust-anything кодны тәрҗемә итми: Rust кодын сезнең �
 C, PHP, C# һәм PowerShell'дан кала һәр тел batch класслар да ала (`--batch`): элементлар бер тапкыр күчә һәм
 Rust'та кала, ә һәр чакыру аларның барысын да барлык ядроларда эшкәртә.
 
-Тел репозиторийдан билгеләнә (`go.mod`, `pom.xml`, `.csproj` яки `.sln`,
+Тел репозиторийдан билгеләнә (`go.mod`, `pom.xml`, `build.gradle`/`build.gradle.kts`, `.csproj` яки `.sln`,
 `pyproject.toml`, `Gemfile`, `composer.json`, `package.json`, юкса иң күп очрый торган чыганак файллар);
-`--lang` аны алыштыра. Типлар чыганак кодтан алына: TS типлары, Python type hints, C, Go, Java һәм C#
+`.kt` чыганак файллары булган һәм `.java` файлы булмаган Gradle модуле Kotlin санала, катнаш модульләр Java булып кала. `--lang` аны алыштыра. Типлар чыганак кодтан алына: TS типлары, Python type hints, C, Go, Java, Kotlin һәм C#
 сигнатуралары, Ruby YARD теглары, PHP типлары һәм phpdoc; сан итеп кулланылган типсыз параметрлар
 сан дип чыгарыла.
 

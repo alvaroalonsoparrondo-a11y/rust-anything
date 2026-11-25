@@ -41,7 +41,7 @@
   <sub>ms, Fuse.js жана json-server долбоорлорунан алынган 59 чыныгы файлда Prettier жана анын Rust порту (Apple M4). Чыгышы байтма-байт бирдей. <a href="real-world.md#prettier">Кантип өлчөнгөн</a>.</sub>
 </p>
 
-<p align="center"><sub>PHP жана C#: бүгүн жазуу, кайра ойнотуу жана front door; модуль порттору кийинки кезекте.</sub></p>
+<p align="center"><sub>PHP, C# жана PowerShell: FFI жана P/Invoke аркылуу модуль порттору.</sub></p>
 
 <table>
   <tr>
@@ -241,9 +241,9 @@ rust-anything кодду которбойт: Rust кодун сиздин код
 C, PHP, C# жана PowerShell'ден башка ар бир тил batch класстарын да алат (`--batch`): элементтер чектен бир жолу өтүп, Rust
 ичинде калат, ал эми ар бир чакыруу алардын баарын бардык ядролордо иштетет.
 
-Тил репозиторийден аныкталат (`go.mod`, `pom.xml`, `.csproj` же `.sln`, `pyproject.toml`, `Gemfile`,
-`composer.json`, `package.json`, болбосо эң көп кездешкен баштапкы файлдар боюнча); `--lang` аны кол
-менен көрсөтөт. Типтер баштапкы коддон алынат: TS типтери, Python hint'тери, C, Go, Java жана C#
+Тил репозиторийден аныкталат (`go.mod`, `pom.xml`, `build.gradle`/`build.gradle.kts`, `.csproj` же `.sln`, `pyproject.toml`, `Gemfile`,
+`composer.json`, `package.json`, болбосо эң көп кездешкен баштапкы файлдар боюнча); `.kt` баштапкы файлдары бар жана `.java` файлы жок Gradle модулу Kotlin деп эсептелет, аралаш модулдар Java бойдон калат. `--lang` аны кол
+менен көрсөтөт. Типтер баштапкы коддон алынат: TS типтери, Python hint'тери, C, Go, Java, Kotlin жана C#
 сигнатуралары, Ruby YARD тегдери, PHP типтери жана phpdoc; сан катары колдонулган типсиз параметрлер
 сан деп эсептелет.
 

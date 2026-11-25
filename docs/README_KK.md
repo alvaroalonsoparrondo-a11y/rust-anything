@@ -41,7 +41,7 @@
   <sub>ms, Fuse.js және json-server жобаларынан алынған 59 нақты файлда Prettier мен оның Rust порты (Apple M4). Шығысы байтпа-байт бірдей. <a href="real-world.md#prettier">Қалай өлшенді</a>.</sub>
 </p>
 
-<p align="center"><sub>PHP және C#: бүгін жазу, қайта ойнату және front door; модуль порттары келесі кезекте.</sub></p>
+<p align="center"><sub>PHP, C# және PowerShell: FFI және P/Invoke арқылы модуль порттары.</sub></p>
 
 <table>
   <tr>
@@ -238,10 +238,10 @@ bridge, порт сәйкес келуге тиіс нақты мінез-құл
 C, PHP, C# және PowerShell-ден басқа әр тіл batch кластарын да алады (`--batch`): элементтер шекарадан бір рет өтіп, Rust ішінде
 қалады, ал әр шақыру олардың барлығын барлық ядроларда өңдейді.
 
-Тіл репозиторийден анықталады (`go.mod`, `pom.xml`, `.csproj` немесе `.sln`, `pyproject.toml`,
+Тіл репозиторийден анықталады (`go.mod`, `pom.xml`, `build.gradle`/`build.gradle.kts`, `.csproj` немесе `.sln`, `pyproject.toml`,
 `Gemfile`, `composer.json`, `package.json`, әйтпесе ең көп кездесетін бастапқы файлдар бойынша);
-`--lang` оны қолмен көрсетеді. Типтер бастапқы кодтан алынады: TS типтері, Python hint-тері, C, Go, Java
-және C# сигнатуралары, Ruby YARD тегтері, PHP типтері және phpdoc; сан ретінде қолданылатын типсіз
+`.kt` бастапқы файлдары бар және `.java` файлы жоқ Gradle модулі Kotlin болып есептеледі, аралас модульдер Java болып қалады. `--lang` оны қолмен көрсетеді. Типтер бастапқы кодтан алынады: TS типтері, Python hint-тері, C, Go, Java,
+Kotlin және C# сигнатуралары, Ruby YARD тегтері, PHP типтері және phpdoc; сан ретінде қолданылатын типсіз
 параметрлер сан деп есептеледі.
 
 PHP үшін `analyze` PHP қолданбасын жоспарлайды (Composer пакеттері және PSR-4 autoloading,
