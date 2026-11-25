@@ -1850,6 +1850,44 @@ mod tests {
     }
 
     #[test]
+    fn bridge_refuses_unknown_keep_name() {
+        let dir = crate::app::temp_dir("bridge-keep").unwrap();
+        std::fs::write(
+            dir.join("package.json"),
+            r#"{"name":"demo","version":"1.0.0"}"#,
+        )
+        .unwrap();
+        std::fs::create_dir_all(dir.join("src")).unwrap();
+        std::fs::write(
+            dir.join("src/add.ts"),
+            "export function add(a: number, b: number): number { return a + b; }\n",
+        )
+        .unwrap();
+        let out = dir.join("rust/add-rs");
+        let err = bridge(&Options {
+            root: &dir,
+            unit: "src/add.ts",
+            kind: Some(Kind::Napi),
+            out: Some(out.clone()),
+            name: None,
+            force: false,
+            lang: None,
+            keep: vec!["nope".into()],
+            batch: vec![],
+            allocator: Allocator::default(),
+            as_json: vec![],
+        })
+        .unwrap_err();
+        assert!(
+            format!("{err:#}")
+                .contains("--keep `nope` is not an export of `src/add.ts` (exports: add)"),
+            "{err:#}"
+        );
+        assert!(!out.exists());
+        std::fs::remove_dir_all(dir).unwrap();
+    }
+
+    #[test]
     fn a_relative_root_is_resolved_from_the_crate_and_kept_relative() {
         let base = std::env::temp_dir().join(format!("rust-anything-root-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&base);
