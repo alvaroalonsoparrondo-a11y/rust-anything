@@ -41,7 +41,7 @@
   <sub>在来自 ms、Fuse.js 和 json-server 的 59 个真实文件上，Prettier 对比其 Rust 移植版（Apple M4）。输出逐字节一致。<a href="real-world.md#prettier">测量方法</a>。</sub>
 </p>
 
-<p align="center"><sub>PHP、C# 和 PowerShell：支持录制、回放与前门代理，单元移植也可通过 FFI 与 P/Invoke 进行。</sub></p>
+<p align="center"><sub>PHP、C# 和 PowerShell：通过 FFI 与 P/Invoke 进行单元移植。</sub></p>
 
 <table>
   <tr>

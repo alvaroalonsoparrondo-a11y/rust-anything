@@ -41,7 +41,7 @@
   <sub>在取自 ms、Fuse.js 與 json-server 的 59 個真實檔案上，Prettier 對上它的 Rust 移植版（Apple M4）。輸出逐位元組相同。<a href="real-world.md#prettier">測量方式</a>。</sub>
 </p>
 
-<p align="center"><sub>PHP、C# 與 PowerShell：支援錄製、重播與前門代理，單元移植也可透過 FFI 與 P/Invoke 進行。</sub></p>
+<p align="center"><sub>PHP、C# 與 PowerShell：透過 FFI 與 P/Invoke 進行單元移植。</sub></p>
 
 <table>
   <tr>

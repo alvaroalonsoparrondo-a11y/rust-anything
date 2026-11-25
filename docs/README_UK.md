@@ -41,7 +41,7 @@
   <sub>Prettier проти свого порту на Rust на 59 реальних файлах з ms, Fuse.js і json-server (Apple M4). Однаковий вивід, байт у байт. <a href="real-world.md#prettier">Як вимірювали</a>.</sub>
 </p>
 
-<p align="center"><sub>PHP, C# і PowerShell: запис, повторне відтворення та front door, а також порти окремих модулів через FFI та P/Invoke.</sub></p>
+<p align="center"><sub>PHP, C# і PowerShell: порти окремих модулів через FFI та P/Invoke.</sub></p>
 
 <table>
   <tr>
