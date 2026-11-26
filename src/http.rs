@@ -82,7 +82,7 @@ pub(crate) fn merge_config(
     if opts.http == Some(false) {
         ensure!(
             !asked,
-            "--no-http cannot be combined with --http, --port, --arg, --pace or --ready-timeout"
+            "--no-http cannot be combined with --http, --port, --arg, --pace, --ready-timeout or --ready"
         );
         return Ok(None);
     }
@@ -2349,6 +2349,31 @@ mod tests {
         assert!(!serde_json::to_string(&reset).unwrap().contains("ready"));
         let implied = merge_config(None, &opts(Some(90))).unwrap().unwrap();
         assert_eq!(implied.ready_secs, Some(90));
+    }
+
+    #[test]
+    fn no_http_with_a_ready_request_names_ready() {
+        let opts = RecordOptions {
+            repo: Path::new("."),
+            run: &[],
+            inputs: None,
+            normalize: &[],
+            name: None,
+            traps: false,
+            timeout_secs: None,
+            http: Some(false),
+            server_args: None,
+            fresh: None,
+            pace_ms: None,
+            port: None,
+            float_tolerance: None,
+            float_files: &[],
+            effects: None,
+            ready_secs: None,
+            ready_request: Some("GET /health"),
+        };
+        let err = merge_config(None, &opts).unwrap_err().to_string();
+        assert!(err.contains("--ready-timeout or --ready"), "{err}");
     }
 
     #[test]
