@@ -4,7 +4,8 @@
 
 - The MCP `app_record` tool called with `http: false` and a `ready` request says
   `--no-http cannot be combined with --http, --port, --arg, --pace, --ready-timeout or --ready`;
-  the message used to leave out `--ready`, the one setting the caller had passed (#666).
+  the message used to leave out `--ready`, the one setting the caller had passed
+  (#666, #667 by @alvaroalonsoparrondo-a11y).
 - `app record --ready` refuses a value that is not `/path` or `METHOD /path` with an uppercase method,
   such as `health`, `get /health` or `GET /health extra`, before the server starts, instead of
   failing after the whole `--ready-timeout`. The MCP `app_record` tool checks it the same way
