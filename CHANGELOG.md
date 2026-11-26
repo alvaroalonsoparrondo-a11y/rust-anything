@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- The table of saved settings in `docs/whole-apps.md` names the flag that clears `http`
+  (`--no-http`), `http.port` (`--port 0`), `http.args` (`--no-args`) and `http.fresh` / `fresh`
+  (`--no-fresh`) instead of saying they cannot be cleared (#665).
 - `app record --ready` refuses a value that is not `/path` or `METHOD /path` with an uppercase method,
   such as `health`, `get /health` or `GET /health extra`, before the server starts, instead of
   failing after the whole `--ready-timeout`. The MCP `app_record` tool checks it the same way
